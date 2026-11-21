@@ -47,10 +47,10 @@ form{display:flex;flex-direction:column;gap:28px}
 .label{font-family:var(--display);font-weight:700;font-size:15px;line-height:1.6;padding:0}
 .req{display:inline-block;margin-left:8px;font-family:var(--display);font-size:11px;font-weight:700;color:var(--pen);border:1px solid var(--pen);border-radius:3px;padding:0 5px;line-height:1.6;vertical-align:2px}
 .help{color:var(--sub);font-size:13px;line-height:1.7}
-input[type=email]{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--paper);border:1px solid #c9cfd8;border-radius:6px;padding:13px 14px;transition:border-color .15s,box-shadow .15s}
-input[type=email]::placeholder{color:#a3aab5}
-input[type=email]:focus{outline:none;border-color:var(--ai);box-shadow:0 0 0 3px var(--ai-soft)}
-.field.err input[type=email]{border-color:var(--pen)}
+input[type=email],input[type=text]{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--paper);border:1px solid #c9cfd8;border-radius:6px;padding:13px 14px;transition:border-color .15s,box-shadow .15s}
+input[type=email]::placeholder,input[type=text]::placeholder{color:#a3aab5}
+input[type=email]:focus,input[type=text]:focus{outline:none;border-color:var(--ai);box-shadow:0 0 0 3px var(--ai-soft)}
+.field.err input[type=email],.field.err input[type=text]{border-color:var(--pen)}
 .msg{display:none;color:var(--pen);font-size:13px;line-height:1.6}
 .field.err .msg{display:block}
 

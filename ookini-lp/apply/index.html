@@ -63,6 +63,12 @@
         <p class="msg">学年を選んでください。</p>
       </fieldset>
 
+      <div class="field" id="otherfield" hidden>
+        <label class="label" for="gradeOther">学年を入力してください<span class="req">必須</span></label>
+        <input id="gradeOther" name="gradeOther" type="text" maxlength="30" autocomplete="off" placeholder="例：中学1年生">
+        <p class="msg">学年を入力してください。</p>
+      </div>
+
       <div class="field">
         <label class="check" for="consent">
           <input id="consent" name="consent" type="checkbox">
@@ -107,6 +113,16 @@
   var form = document.getElementById('f');
   var btn = document.getElementById('submit');
   var alertBox = document.getElementById('alert');
+  var otherField = document.getElementById('otherfield');
+
+  // 「その他」を選んだときだけ記入欄を出す
+  Array.prototype.forEach.call(form.querySelectorAll('input[name=grade]'), function (r) {
+    r.addEventListener('change', function () {
+      var isOther = form.querySelector('input[name=grade]:checked').value === 'その他';
+      otherField.hidden = !isOther;
+      if (isOther) form.gradeOther.focus();
+    });
+  });
 
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
@@ -120,11 +136,14 @@
     if (!OokiniForm.validEmail(email)) { OokiniForm.setErr(form.email, true); ok = false; }
     if (email2.toLowerCase() !== email.toLowerCase() || !email2) { OokiniForm.setErr(form.email2, true); ok = false; }
     if (!gradeEl) { document.getElementById('gradefield').classList.add('err'); ok = false; }
+    var gradeOther = form.gradeOther.value.trim();
+    if (gradeEl && gradeEl.value === 'その他' && !gradeOther) { OokiniForm.setErr(form.gradeOther, true); ok = false; }
     if (!form.consent.checked) { OokiniForm.setErr(form.consent, true); ok = false; }
     if (!ok) { var first = form.querySelector('.field.err'); if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
 
     btn.disabled = true; btn.textContent = '送信しています…';
-    OokiniForm.send({ type: 'apply', k: k, email: email, grade: gradeEl.value, consent: true })
+    OokiniForm.send({ type: 'apply', k: k, email: email, grade: gradeEl.value,
+                      gradeOther: gradeEl.value === 'その他' ? gradeOther : '', consent: true })
       .then(function (res) {
         if (!res || !res.ok) throw new Error((res && res.error) || 'failed');
         document.getElementById('formsec').hidden = true;
