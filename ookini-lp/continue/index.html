@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>継続のお申し込み｜京大おおきに先生×ヤルッキャ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../form.css">
+</head>
+<body>
+<div class="page">
+
+  <header class="brandbar" aria-label="京大おおきに先生 × ヤルッキャ">
+    <img class="lg-ookini" src="../img/ookini-logo.png" alt="京大おおきに先生">
+    <span class="x" aria-hidden="true">×</span>
+    <img class="lg-yaru" src="../img/yarukkya-logo.png" alt="ヤルッキャ">
+  </header>
+
+  <section class="sec" id="formsec">
+    <p class="eyebrow">ヤルッキャを有料プランでご利用中の方</p>
+    <h1 class="h1">京大おおきに先生<br>継続のお申し込み</h1>
+    <p class="lead">無料期間のあとも京大おおきに先生を続けてご利用いただく場合は、こちらからお申し込みください。お手続きはこのフォームの送信だけで完了します。</p>
+    <ul class="pair">
+      <li><span class="k">切り替え</span><span class="v">無料期間のあと、最初のお支払い日から</span></li>
+      <li><span class="k">月額料金</span><span class="v">4,980円（ヤルッキャ＋京大おおきに先生）</span></li>
+      <li><span class="k">お支払い</span><span class="v">いまのお支払い方法のまま。切り替えは運営側で行います</span></li>
+    </ul>
+
+    <form id="f" novalidate>
+      <div class="field">
+        <label class="label" for="email">ご登録のメールアドレス<span class="req">必須</span></label>
+        <p class="help">京大おおきに先生に登録したメールアドレス（「【京大生質問し放題】ご利用開始のお知らせ」メールに記載の登録用メールアドレス）を入力してください。</p>
+        <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="example@mail.com" required>
+        <p class="msg">メールアドレスを正しく入力してください。</p>
+      </div>
+
+      <div class="field">
+        <label class="label" for="email2">確認のため、もう一度入力してください<span class="req">必須</span></label>
+        <input id="email2" name="email2" type="email" inputmode="email" autocomplete="off" placeholder="example@mail.com" required>
+        <p class="msg">上のメールアドレスと一致していません。</p>
+      </div>
+
+      <div class="field">
+        <label class="check" for="wish">
+          <input id="wish" name="wish" type="checkbox">
+          <span>
+            <b>課金を希望する</b>
+            <small>無料期間のあと最初のお支払い日から、ヤルッキャの月額料金が4,980円（ヤルッキャ＋京大おおきに先生）に切り替わります。</small>
+          </span>
+        </label>
+        <p class="msg">継続をご希望の場合は、チェックを入れてください。</p>
+      </div>
+
+      <div class="alert" id="alert" role="alert"></div>
+      <button class="btn" id="submit" type="submit">継続を申し込む</button>
+    </form>
+    <p class="note">お申し込みがない場合も、ヤルッキャはこれまでどおりご利用いただけます（京大おおきに先生のみ終了します）。</p>
+  </section>
+
+  <section class="sec" id="done" hidden>
+    <p class="eyebrow">継続のお申し込みを受け付けました</p>
+    <h1 class="h1">お手続きは<span class="nw">これで完了です</span></h1>
+    <div class="panel">
+      <p>無料期間のあとも、京大おおきに先生をそのままご利用いただけます。無料期間のあと最初のお支払い日から、月額4,980円（ヤルッキャ＋京大おおきに先生）に切り替わります。</p>
+      <p class="note">ご不明な点は、ヤルッキャ運営（info@herazika.com）までお問い合わせください。</p>
+    </div>
+  </section>
+
+  <p class="foot">お問い合わせ：ヤルッキャ運営（株式会社Herazika）info@herazika.com</p>
+</div>
+
+<script src="../form.js"></script>
+<script>
+(function () {
+  var form = document.getElementById('f');
+  var btn = document.getElementById('submit');
+  var alertBox = document.getElementById('alert');
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    OokiniForm.clearErrors(form);
+    alertBox.classList.remove('on');
+
+    var email = form.email.value.trim();
+    var email2 = form.email2.value.trim();
+    var ok = true;
+    if (!OokiniForm.validEmail(email)) { OokiniForm.setErr(form.email, true); ok = false; }
+    if (email2.toLowerCase() !== email.toLowerCase() || !email2) { OokiniForm.setErr(form.email2, true); ok = false; }
+    if (!form.wish.checked) { OokiniForm.setErr(form.wish, true); ok = false; }
+    if (!ok) { var first = form.querySelector('.field.err'); if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+
+    btn.disabled = true; btn.textContent = '送信しています…';
+    OokiniForm.send({ type: 'continue', email: email, wish: true })
+      .then(function (res) {
+        if (!res || !res.ok) throw new Error((res && res.error) || 'failed');
+        document.getElementById('formsec').hidden = true;
+        document.getElementById('done').hidden = false;
+        window.scrollTo(0, 0);
+      })
+      .catch(function () {
+        alertBox.textContent = '送信できませんでした。通信環境をご確認のうえ、もう一度お試しください。解決しない場合は info@herazika.com までお問い合わせください。';
+        alertBox.classList.add('on');
+        btn.disabled = false; btn.textContent = '継続を申し込む';
+      });
+  });
+})();
+</script>
+</body>
+</html>

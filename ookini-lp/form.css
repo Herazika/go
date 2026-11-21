@@ -1,0 +1,89 @@
+/* 申込フォーム・継続フォーム共通。LP（../index.html）と同じトークン・組み方 */
+:root{
+  --paper:#ffffff;
+  --mist:#f3f5f8;
+  --ink:#141922;
+  --sub:#5b6473;
+  --line:#e2e6ec;
+  --ai:#1f3f8c;
+  --ai-soft:#eef2fa;
+  --pen:#dc4a2e;
+  --pen-soft:#fdeeea;
+  --display:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --num:"Outfit","Helvetica Neue",Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--mist);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1}
+.page{max-width:440px;margin:0 auto;background:var(--paper);min-height:100vh;padding-bottom:64px}
+h1,h2,p,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+img{display:block;max-width:100%;height:auto}
+h1,h2{font-family:var(--display);font-weight:700;letter-spacing:.02em;text-wrap:balance}
+.nw{display:inline-block}
+
+.brandbar{display:flex;align-items:center;gap:12px;padding-block:14px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px));border-bottom:1px solid var(--line)}
+.brandbar .x{font-family:var(--num);font-weight:400;color:var(--sub);font-size:15px}
+.brandbar .lg-ookini{height:38px;width:auto}
+.brandbar .lg-yaru{height:27px;width:auto}
+
+.sec{padding-block:40px 8px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:24px}
+.eyebrow{font-family:var(--display);font-weight:700;font-size:13px;color:var(--ai);letter-spacing:.08em}
+.h1{font-size:28px;line-height:1.45}
+.lead{color:var(--sub);font-size:14px}
+.note{color:var(--sub);font-size:12px;line-height:1.7}
+
+/* 要点（申込内容のまとめ） */
+.pair{border-top:1px solid var(--ink)}
+.pair li{display:grid;grid-template-columns:5.5em 1fr;align-items:baseline;gap:8px;padding:12px 0;border-bottom:1px solid var(--line)}
+.pair .k{font-family:var(--display);font-weight:700;font-size:13px;color:var(--sub);letter-spacing:.06em}
+.pair .v{font-family:var(--display);font-weight:700;font-size:15px}
+
+/* フォーム */
+form{display:flex;flex-direction:column;gap:28px}
+.field{display:flex;flex-direction:column;gap:8px;border:0;padding:0;margin:0;min-width:0}
+.label{font-family:var(--display);font-weight:700;font-size:15px;line-height:1.6;padding:0}
+.req{display:inline-block;margin-left:8px;font-family:var(--display);font-size:11px;font-weight:700;color:var(--pen);border:1px solid var(--pen);border-radius:3px;padding:0 5px;line-height:1.6;vertical-align:2px}
+.help{color:var(--sub);font-size:13px;line-height:1.7}
+input[type=email]{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--paper);border:1px solid #c9cfd8;border-radius:6px;padding:13px 14px;transition:border-color .15s,box-shadow .15s}
+input[type=email]::placeholder{color:#a3aab5}
+input[type=email]:focus{outline:none;border-color:var(--ai);box-shadow:0 0 0 3px var(--ai-soft)}
+.field.err input[type=email]{border-color:var(--pen)}
+.msg{display:none;color:var(--pen);font-size:13px;line-height:1.6}
+.field.err .msg{display:block}
+
+/* 学年 */
+.grades{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.grades label{position:relative}
+.grades input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.grades span{display:flex;align-items:center;justify-content:center;height:46px;border:1px solid #c9cfd8;border-radius:6px;font-family:var(--display);font-weight:700;font-size:15px;background:var(--paper);transition:background .15s,border-color .15s,color .15s}
+.grades input:checked + span{background:var(--ai);border-color:var(--ai);color:#fff}
+.grades input:focus-visible + span{box-shadow:0 0 0 3px var(--ai-soft);border-color:var(--ai)}
+.field.err .grades span{border-color:var(--pen)}
+
+/* 同意・希望のチェック */
+.check{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;background:var(--mist);border-radius:6px;padding:16px;cursor:pointer}
+.check input{width:20px;height:20px;margin:3px 0 0;accent-color:var(--ai)}
+.check b{font-family:var(--display);font-weight:700;font-size:15px;line-height:1.6;display:block}
+.check small{display:block;color:var(--sub);font-size:12px;line-height:1.7;margin-top:6px}
+.field.err .check{outline:1px solid var(--pen)}
+
+/* 送信 */
+.btn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;border:0;cursor:pointer;background:var(--ai);color:#fff;border-radius:6px;padding:18px 20px;font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.04em;transition:background .2s}
+.btn:hover{background:#18326f}
+.btn:focus-visible{outline:3px solid var(--pen);outline-offset:3px}
+.btn[disabled]{background:#8a97b8;cursor:wait}
+.alert{display:none;background:var(--pen-soft);color:#8f2a17;border-radius:6px;padding:14px 16px;font-size:13px;line-height:1.7}
+.alert.on{display:block}
+
+/* 完了・案内 */
+.panel{border-top:1px solid var(--ink);padding-top:20px;display:flex;flex-direction:column;gap:16px}
+.steps{display:flex;flex-direction:column;gap:14px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;counter-increment:s}
+.steps li::before{content:counter(s);width:28px;height:28px;border-radius:50%;background:var(--ai);color:#fff;font-family:var(--num);font-weight:600;font-size:14px;display:grid;place-items:center;margin-top:1px}
+.mailname{font-family:var(--display);font-weight:700;background:var(--ai-soft);border-radius:4px;padding:2px 6px}
+.link{color:var(--ai);font-weight:700}
+.foot{padding:32px max(24px,env(safe-area-inset-right,0px)) 0 max(24px,env(safe-area-inset-left,0px));color:var(--sub);font-size:12px;line-height:1.8}
+[hidden]{display:none!important}
