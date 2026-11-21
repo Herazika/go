@@ -78,6 +78,13 @@ input[type=email]:focus,input[type=text]:focus{outline:none;border-color:var(--a
 .alert{display:none;background:var(--pen-soft);color:#8f2a17;border-radius:6px;padding:14px 16px;font-size:13px;line-height:1.7}
 .alert.on{display:block}
 
+/* 申込コードなしで開いたときの振り分け */
+.choice{display:flex;flex-direction:column;border-top:1px solid var(--ink)}
+.opt{display:flex;flex-direction:column;gap:10px;padding:22px 0;border-bottom:1px solid var(--line)}
+.opt-k{font-family:var(--display);font-weight:700;font-size:16px;color:var(--ai)}
+a.btn{text-decoration:none;justify-content:space-between}
+.btn .arw{width:18px;height:18px;flex:none}
+
 /* 完了・案内 */
 .panel{border-top:1px solid var(--ink);padding-top:20px;display:flex;flex-direction:column;gap:16px}
 .steps{display:flex;flex-direction:column;gap:14px;counter-reset:s}
