@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>京大生に質問し放題｜ヤルッキャアカウントをお持ちの方限定</title>
+<meta name="description" content="ヤルッキャアカウントをお持ちの方限定。中学受験のわからない問題を、国算理社すべて京大生に質問し放題。2週間無料。">
+<!-- OGP：本番では og:image と og:url を本番ドメインの絶対URLに置き換える -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="京大生に質問し放題｜ヤルッキャアカウントをお持ちの方限定">
+<meta property="og:description" content="ヤルッキャアカウントをお持ちの方限定。中学受験のわからない問題を、国算理社すべて京大生に質問し放題。2週間無料。">
+<meta property="og:image" content="https://（本番ドメイン）/ogp.png">
+<meta property="og:url" content="https://（本番ドメイン）/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Outfit:wght@400;500;600&display=swap">
+<style>
+/* Layout: 一般向けLPと同じトンマナ（スマホ1カラム、藍1色、赤ペンはファーストビューの1か所、方眼はS3の1か所）。既存ユーザー向けに、京大生への質問を主役にする */
+:root{
+  --paper:#ffffff;
+  --mist:#f3f5f8;
+  --ink:#141922;
+  --sub:#5b6473;
+  --line:#e2e6ec;
+  --ai:#1f3f8c;
+  --ai-soft:#eef2fa;
+  --pen:#dc4a2e;
+  --grid:#e6ebf2;
+  --display:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  --body:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;
+  --num:"Outfit","Helvetica Neue",Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--mist);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1}
+.page{max-width:440px;margin:0 auto;background:var(--paper);padding-bottom:96px;overflow:hidden}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+img{display:block;max-width:100%;height:auto}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.02em;text-wrap:balance}
+.sec{padding-block:72px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:28px}
+.sec + .sec{border-top:1px solid var(--line)}
+.sec.tint{background:var(--mist);border-top:0}
+.sec.tint + .sec{border-top:0}
+.h2{font-size:26px;line-height:1.5}
+.lead{color:var(--sub);font-size:14px}
+.note{color:var(--sub);font-size:12px;line-height:1.7}
+.nw{display:inline-block}
+
+/* ボタン */
+.cta{display:flex;flex-direction:column;gap:10px}
+.btn{display:flex;align-items:center;justify-content:space-between;gap:12px;text-decoration:none;background:var(--ai);color:#fff;border-radius:6px;padding:18px 20px;font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.04em;transition:background .2s}
+.btn small{font-size:13px;font-weight:500;opacity:.85;letter-spacing:.02em}
+.btn .arw{width:18px;height:18px;flex:none}
+.btn:hover{background:#18326f}
+.btn:focus-visible{outline:3px solid var(--pen);outline-offset:3px}
+.cta .note{text-align:left}
+
+/* ヘッダー */
+.brandbar{display:flex;align-items:center;gap:12px;padding-block:14px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+.brandbar .x{font-family:var(--num);font-weight:400;color:var(--sub);font-size:15px}
+.brandbar .lg-ookini{height:38px;width:auto;max-width:none}
+.brandbar .lg-yaru{height:27px;width:auto;max-width:none}
+
+/* S1 ファーストビュー */
+.fv{padding-top:32px;gap:26px}
+.only{align-self:flex-start;display:flex;align-items:center;gap:8px;background:var(--ai);color:#fff;border-radius:4px;padding:6px 12px 6px 10px;font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.04em;line-height:1.4}
+.only svg{width:16px;height:16px;flex:none;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fv h1{font-size:clamp(34px,10.4vw,46px);line-height:1.38;font-weight:900;letter-spacing:.02em;margin-top:-6px}
+.fv h1 .q{display:block;font-size:.62em;line-height:1.5;color:var(--sub);font-weight:700}
+.mark{position:relative;white-space:nowrap}
+.mark svg{position:absolute;left:-4px;right:-6px;bottom:-14px;width:calc(100% + 10px);height:20px;overflow:visible}
+.mark path{fill:none;stroke:var(--pen);stroke-width:3.2;stroke-linecap:round;stroke-dasharray:420;stroke-dashoffset:0;animation:draw .9s .35s cubic-bezier(.6,.1,.3,1) backwards}
+@keyframes draw{from{stroke-dashoffset:420}}
+@media (prefers-reduced-motion:reduce){.mark path{animation:none}}
+
+/* 国算理社 */
+.subj4{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.subj4 i{font-style:normal;width:46px;height:46px;border:1.5px solid var(--ink);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:23px;line-height:1;background:var(--paper)}
+.subj4 i:nth-child(odd){background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:11.5px 11.5px;background-position:-1px -1px}
+.subj4 b{font-family:var(--display);font-weight:900;font-size:26px;line-height:1;margin-left:-2px}
+.subj4 span{flex-basis:100%;font-size:13px;color:var(--sub);font-weight:500}
+
+.duo{display:flex;flex-direction:column}
+.duo .lead{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.04em;color:var(--ink);margin-bottom:12px}
+.svc{border-radius:10px;padding:20px 20px 22px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;background:var(--mist)}
+.svc .lg{height:34px;width:auto;max-width:100%}
+.svc .lg.y{height:26px}
+.svc .v{font-family:var(--display);font-weight:900;font-size:25px;line-height:1.4}
+.svc .now{font-size:12px;font-weight:700;color:var(--sub);letter-spacing:.04em}
+.svc .badge{font-size:12px;font-weight:700;color:var(--ai);letter-spacing:.06em;line-height:1.5;border:1px solid var(--ai);border-radius:999px;padding:3px 12px}
+.duo .plus{align-self:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:17px;line-height:1;margin-block:10px}
+
+/* S2 課題 */
+.pains li{display:grid;grid-template-columns:22px 1fr;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);font-weight:500;line-height:1.75}
+.pains li:first-child{border-top:1px solid var(--line)}
+.pains .box{width:18px;height:18px;border:1.5px solid var(--ink);margin-top:5px;position:relative}
+.pains .box svg{position:absolute;left:1px;top:-7px;width:22px;height:22px;overflow:visible}
+.pains .box path{fill:none;stroke:var(--pen);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* S3 方眼 */
+.graph{background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:18px 18px;background-position:-1px -1px}
+.split{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink);background:var(--paper)}
+.split > div{padding:22px 16px 20px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.split > div + div{border-left:1px solid var(--ink)}
+.split .k{font-family:var(--display);font-weight:900;font-size:24px;line-height:1.3}
+.split .why{font-size:12px;color:var(--sub)}
+.split .down{width:1px;height:28px;background:var(--ink);margin:6px 0 6px 2px;position:relative}
+.split .down::after{content:"";position:absolute;left:-3px;bottom:0;width:7px;height:7px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);transform:rotate(45deg)}
+.split .s{font-family:var(--display);font-weight:700;font-size:15px;line-height:1.5;color:var(--ai)}
+.split .tag{align-self:flex-start;font-size:11px;font-weight:700;color:var(--sub);border:1px solid var(--line);border-radius:999px;padding:1px 9px;margin-top:4px}
+
+/* セクション冒頭ロゴ */
+.sec-logo{width:auto;max-width:100%}
+.sec-logo.ookini{height:52px}
+.sec-logo.yaru{height:40px}
+.head{display:flex;flex-direction:column;gap:20px;align-items:flex-start}
+
+/* S4 チャット見本 */
+.chat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 16px;display:flex;flex-direction:column;gap:10px}
+.chat .cap{font-size:11px;color:var(--sub);text-align:center;letter-spacing:.04em}
+.bub{max-width:84%;padding:10px 13px;border-radius:14px;font-size:13px;line-height:1.65}
+.bub .who{display:block;font-size:10px;font-weight:700;color:var(--sub);margin-bottom:2px;letter-spacing:.04em}
+.bub.me{align-self:flex-end;background:var(--ai);color:#fff;border-bottom-right-radius:4px;display:flex;gap:10px;align-items:center}
+.bub.me i{flex:none;width:40px;height:30px;border-radius:4px;background-color:#fff;background-image:linear-gradient(#c9d3e6 1px,transparent 1px),linear-gradient(90deg,#c9d3e6 1px,transparent 1px);background-size:6px 6px}
+.bub.them{align-self:flex-start;background:var(--mist);border-bottom-left-radius:4px}
+.bub.video{display:flex;align-items:center;gap:10px}
+.bub.video .play{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);display:grid;place-items:center}
+.bub.video .play::after{content:"";border-left:8px solid #fff;border-top:5px solid transparent;border-bottom:5px solid transparent;margin-left:2px}
+.time{align-self:center;font-family:var(--num);font-size:11px;color:var(--sub);letter-spacing:.06em}
+
+.steps{display:flex;flex-direction:column;position:relative}
+.steps>li{display:grid;grid-template-columns:40px 1fr;gap:14px;padding-bottom:26px;position:relative}
+.steps>li:last-child{padding-bottom:0}
+.steps>li::before{content:"";position:absolute;left:13px;top:30px;bottom:2px;width:1px;background:var(--line)}
+.steps>li:last-child::before{display:none}
+.steps .n{font-family:var(--num);font-weight:500;font-size:13px;width:27px;height:27px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;line-height:1;background:var(--paper)}
+.steps .t{display:flex;flex-direction:column;gap:4px;min-width:0}
+.steps h3{font-size:17px;line-height:1.55}
+.steps p{font-size:13px;color:var(--sub);line-height:1.75}
+.photo-slot{width:100%;max-width:100%;aspect-ratio:4/3;border-radius:10px;border:1px dashed #b9c1cd;background:var(--paper);display:grid;place-items:center;text-align:center;font-size:13px;color:var(--sub);line-height:1.7;padding:16px}
+.subjects{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:13px}
+.subjects b{font-weight:700;color:var(--sub);font-size:12px;letter-spacing:.06em;flex:none}
+.subjects span{font-family:var(--display);font-weight:700;letter-spacing:.12em}
+
+.movie{display:flex;flex-direction:column;gap:14px}
+.movie h3{font-size:19px}
+.movie .q-lead{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ai)}
+.kc{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin-inline:-24px;padding:2px 24px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.kc::-webkit-scrollbar{display:none}
+.kc>li{flex:0 0 80%;scroll-snap-align:center;display:flex;flex-direction:column;gap:14px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 18px 16px}
+.kc blockquote{margin:0;display:flex;flex-direction:column;gap:10px;flex:1}
+.kc .say{font-family:var(--display);font-weight:700;font-size:16px;line-height:1.65;color:var(--ink)}
+.kc .more{font-size:12.5px;line-height:1.75;color:var(--sub)}
+.kc .who{border-top:1px solid var(--line);padding-top:12px;font-size:12px;line-height:1.7;color:var(--sub)}
+.kc .who b{display:block;font-family:var(--display);font-weight:700;font-size:13px;color:var(--ink)}
+.kc .vbtn{display:flex;align-items:center;gap:12px;width:100%;padding:0;border:0;background:none;font:inherit;color:var(--ai);text-align:left;cursor:pointer}
+.kc .vbtn .th{position:relative;flex:none;width:48px;height:64px;border-radius:8px;overflow:hidden;background:var(--ink)}
+.kc .vbtn .th img{width:100%;height:100%;object-fit:cover}
+.kc .vbtn .th::after{content:"";position:absolute;inset:0;margin:auto;width:0;height:0;border-left:11px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent;transform:translateX(2px);filter:drop-shadow(0 0 3px rgba(0,0,0,.5))}
+.kc .vbtn span{font-family:var(--display);font-weight:700;font-size:13px}
+.kc .vbtn small{font-family:var(--num);font-size:12px;color:var(--sub);margin-left:6px}
+.kc-hint{display:flex;justify-content:center;gap:6px}
+.kc-hint i{width:6px;height:6px;border-radius:50%;background:var(--line)}
+.kc-hint i.on{background:var(--ai)}
+.vd{border:0;padding:0;background:transparent;max-width:none;max-height:none;overflow:visible}
+.vd::backdrop{background:rgba(10,14,20,.88)}
+.vd form{position:relative;margin:0;padding-top:48px}
+.vd video{display:block;width:min(86vw,360px);aspect-ratio:404/720;border-radius:12px;background:#000}
+.vd .x{position:absolute;top:0;right:0;width:36px;height:36px;border-radius:50%;border:1.5px solid #fff;background:none;color:#fff;font-size:20px;line-height:1;cursor:pointer}
+.pending{border:1px dashed #b9c1cd;border-radius:10px;padding:18px;font-size:13px;color:var(--sub)}
+
+/* S5 自習室 */
+.creds{display:flex;flex-wrap:wrap;gap:8px}
+.creds span{border:1px solid var(--ink);border-radius:999px;padding:5px 14px;font-size:12px;font-weight:700;letter-spacing:.04em}
+.block{display:flex;flex-direction:column;gap:14px}
+.block h3{font-size:18px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.two > *{min-width:0}
+.two figure{display:flex;flex-direction:column;gap:10px}
+.two img{border-radius:8px;width:100%;aspect-ratio:1/1;object-fit:cover}
+.two figcaption{font-size:13px;font-weight:700;line-height:1.55}
+.two figcaption b{display:block;font-family:var(--num);font-weight:500;font-size:11px;letter-spacing:.14em;color:var(--ai)}
+.two.mosaic{grid-template-columns:1fr}
+.two.mosaic img{aspect-ratio:auto}
+.feats li{display:grid;grid-template-columns:28px 1fr;gap:14px;padding:18px 0;border-top:1px solid var(--line)}
+.feats li:last-child{border-bottom:1px solid var(--line)}
+.feats svg{width:24px;height:24px;stroke:var(--ai);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-top:3px}
+.feats h3{font-size:16px;line-height:1.55}
+.feats p{font-size:13px;color:var(--sub);line-height:1.75}
+.feats .rec{margin-top:12px;width:min(100%,213px);display:flex;flex-direction:column;gap:6px}
+.feats .rec img{width:100%;aspect-ratio:213/141;border-radius:8px;background:var(--mist)}
+.feats .rec figcaption{font-size:11px;color:var(--sub);line-height:1.5}
+
+/* 中間CTA */
+.mid{gap:14px}
+
+/* S7 料金 */
+.price{border:1px solid var(--ink);background:var(--paper);display:flex;flex-direction:column}
+.price .limit{background:var(--pen);color:#fff;text-align:center;padding:10px 12px 12px;font-family:var(--display);display:flex;flex-direction:column;align-items:center;gap:0;line-height:1.4}
+.price .limit span{font-size:13px;font-weight:700;letter-spacing:.04em}
+.price .limit b{font-size:24px;font-weight:900;letter-spacing:.08em}
+.price .body{padding:26px 18px 22px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px}
+.price .old{display:flex;align-items:baseline;gap:6px;font-size:14px;color:var(--ink);font-weight:700}
+.price .old s{font-family:var(--num);font-size:28px;font-weight:500;color:var(--ink);text-decoration:none;position:relative;padding:0 2px}
+.price .old s::after{content:"";position:absolute;left:-4px;right:-4px;top:52%;height:3px;background:var(--pen);transform:rotate(-8deg)}
+.price .down{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:12px solid var(--pen);margin:6px 0 2px}
+.price .new{display:flex;align-items:baseline;gap:6px}
+.price .new b{font-family:var(--num);font-weight:500;font-size:60px;line-height:1.05;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.price .new span{font-size:14px;font-weight:700}
+.price .save{display:inline-block;margin-top:6px;font-weight:700;font-size:14px;color:var(--pen);border:1.5px solid var(--pen);border-radius:999px;padding:2px 14px}
+.price .free{background:var(--ink);color:#fff;padding:3px 10px;font-family:var(--display);letter-spacing:.06em}
+.price .free-line{margin-top:10px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px}
+.price .set{margin:0 18px;padding-top:14px;border-top:1px solid var(--line);font-family:var(--display);font-weight:700;font-size:14px;text-align:center}
+.price ul{margin:0 18px;padding:10px 0 18px;display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:500}
+.price ul li{display:grid;grid-template-columns:18px 1fr;gap:8px}
+.price ul li::before{content:"";width:10px;height:6px;border-left:2px solid var(--ai);border-bottom:2px solid var(--ai);transform:rotate(-45deg);margin-top:8px}
+.flow{display:flex;flex-direction:column;gap:16px}
+.flow > h3{font-size:18px}
+
+/* S8 FAQ */
+.faq{border-top:1px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;display:grid;grid-template-columns:24px 1fr 14px;gap:8px;padding:18px 0;font-weight:700;font-size:15px;line-height:1.6}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q";font-family:var(--num);font-weight:500;color:var(--ai);font-size:16px;line-height:1.5}
+.faq summary::after{content:"";width:10px;height:10px;border-right:1.5px solid var(--sub);border-bottom:1.5px solid var(--sub);transform:rotate(45deg);margin-top:6px;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(-135deg);margin-top:11px}
+.faq summary:focus-visible{outline:2px solid var(--ai);outline-offset:2px}
+.faq details p{padding:0 0 20px 32px;font-size:14px;color:var(--sub)}
+.faq-groups{display:flex;flex-direction:column;gap:28px}
+.faq-g{display:flex;flex-direction:column;gap:10px}
+.faq-g h3{font-size:14px;color:var(--ai);letter-spacing:.06em;display:flex;align-items:center;gap:8px}
+.faq-g h3::before{content:"";width:3px;height:14px;background:var(--ai);border-radius:2px}
+
+/* S9 */
+.last{background:var(--ink);color:#fff;border-top:0}
+.last .h2{font-size:28px}
+.last .btn{background:#fff;color:var(--ink)}
+.last .btn:hover{background:#e8ecf3}
+.last .note{color:#aab3c2}
+
+.foot{padding-block:28px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px));font-size:11px;color:var(--sub);line-height:1.9;display:flex;flex-direction:column;gap:4px}
+
+/* 追従CTA */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;justify-content:center;pointer-events:none;transition:transform .3s}
+.sticky-in{pointer-events:auto;width:100%;max-width:440px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding-top:10px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.sticky .btn{padding:15px 18px;font-size:16px}
+.sticky.off{transform:translateY(130%)}
+@media (prefers-reduced-motion:reduce){.sticky{transition:none}}
+
+.steps .ai-note{display:flex;gap:6px;align-items:flex-start;background:var(--ai-soft);color:var(--ink);border-radius:6px;padding:8px 10px;margin-top:4px;font-size:12px;line-height:1.65}
+.vs{margin-top:8px;border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:14px 12px 12px;display:flex;flex-direction:column;gap:10px}
+.vs-q{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);line-height:1.5}
+.steps .ok{display:inline-block;font-family:var(--display);font-weight:700;font-size:12px;color:#fff;background:var(--pen);border-radius:999px;padding:1px 10px;margin-right:8px;letter-spacing:.04em}
+.offer{align-self:flex-start;margin:0 0 -22px 12px;position:relative;z-index:1;font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.04em;line-height:1.4;--ring:var(--paper)}
+.mid .offer{margin-bottom:-26px}
+.tint .offer{--ring:var(--mist)}
+.last .offer{--ring:var(--ink)}
+.offer span{display:inline-block;background:var(--pen);color:#fff;border-radius:999px;padding:3px 14px;box-shadow:0 0 0 3px var(--ring)}
+.offer + .btn{padding-top:22px}
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+
+
+<div class="page">
+
+  <header class="brandbar" aria-label="京大おおきに先生 × ヤルッキャ">
+    <img class="lg-ookini" src="../img/ookini-logo.png" alt="京大おおきに先生">
+    <span class="x" aria-hidden="true">×</span>
+    <img class="lg-yaru" src="../img/yarukkya-logo.png" alt="ヤルッキャ">
+  </header>
+
+  <!-- S1 ファーストビュー -->
+  <section class="sec fv" id="fv">
+    <p class="only"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 015 0v2"/></svg>ヤルッキャアカウントをお持ちの方限定</p>
+    <h1><span class="q">中学受験、わからない問題を</span>京大生に<br><span class="mark">質問し放題<svg viewBox="0 0 200 18" preserveAspectRatio="none" aria-hidden="true"><path d="M3 11 C 48 4, 104 6, 150 7 S 192 9, 197 6"/></svg></span></h1>
+    <p class="subj4" aria-label="国語・算数・理科・社会、すべて質問できます"><i aria-hidden="true">国</i><i aria-hidden="true">算</i><i aria-hidden="true">理</i><i aria-hidden="true">社</i><b aria-hidden="true">！</b><span>4教科どれでも、何回でも</span></p>
+    <div class="duo">
+      <p class="lead">お持ちのヤルッキャアカウントで、2つのサービスをセットでご利用いただけます</p>
+      <div class="svc"><img class="lg" src="../img/ookini-logo.png" alt="京大おおきに先生"><span class="v">京大生に質問し放題</span></div>
+      <span class="plus" aria-hidden="true">＋</span>
+      <div class="svc"><img class="lg y" src="../img/yarukkya-logo.png" alt="ヤルッキャ"><span class="badge">経済産業省 採択事業</span><span class="v">オンライン自習室</span><span class="now">お持ちのアカウントのまま使えます</span></div>
+    </div>
+    <div class="cta">
+      <p class="offer"><span>ヤルッキャユーザー限定割引</span></p>
+      <a class="btn js-apply" target="_top" href="https://herazika.github.io/go/ookini-lp/apply/"><span>無料ではじめる<small>（2週間無料）</small></span><svg class="arw" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5"/></svg></a>
+      <p class="note">クレジットカード不要／自動で課金されません</p>
+    </div>
+  </section>
+
+  <!-- S2 課題 -->
+  <section class="sec tint">
+    <h2 class="h2">中学受験の家庭学習、<br>親が全部抱えていませんか</h2>
+    <ul class="pains">
+      <li><span class="box"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M3 12l5 5L20 2"/></svg></span><span><span class="nw">算数の質問に答えられない。</span><span class="nw">教えようとすると喧嘩になる</span></span></li>
+      <li><span class="box"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M3 12l5 5L20 2"/></svg></span><span><span class="nw">机に向かっても、</span><span class="nw">わからない問題で手が止まる</span></span></li>
+      <li><span class="box"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M3 12l5 5L20 2"/></svg></span><span><span class="nw">共働きで、塾のない日の家庭学習を</span><span class="nw">見てあげられない</span></span></li>
+    </ul>
+  </section>
+
+  <!-- S3 なぜ2つセットなのか -->
+  <section class="sec graph">
+    <h2 class="h2">「わからない」と「やらない」<br>両方まとめて任せられます</h2>
+    <div class="split">
+      <div><span class="k">わからない</span><span class="why">問題で手が止まる</span><span class="down" aria-hidden="true"></span><span class="s">京大生に<br>質問し放題</span></div>
+      <div><span class="k">やらない</span><span class="why">机に向かわない</span><span class="down" aria-hidden="true"></span><span class="s">オンライン<br>自習室</span><span class="tag">お持ちのアカウントで使えます</span></div>
+    </div>
+  </section>
+
+  <!-- S4 京大生に質問 -->
+  <section class="sec tint">
+    <div class="head">
+      <img class="sec-logo ookini" src="../img/ookini-logo.png" alt="京大おおきに先生">
+      <h2 class="h2">京大生に質問し放題</h2>
+    </div>
+    <div class="chat" aria-label="質問のやりとりの画面イメージ">
+      <span class="cap">画面はイメージです</span>
+      <div class="bub me"><i aria-hidden="true"></i><span>この問題の(2)がわかりません</span></div>
+      <div class="bub them"><span class="who">AIのヒント</span>まず、2つの速さの差に注目してみよう。1分で何m縮まるかな？</div>
+      <span class="time">10分後</span>
+      <div class="bub them video"><span class="play" aria-hidden="true"></span><span><span class="who">AIの回答</span>答えと解き方の解説動画です</span></div>
+    </div>
+    <ol class="steps">
+      <li><span class="n">1</span><div class="t"><h3>問題を撮って送る</h3><p>スマホで撮って、わからないところを一言添えるだけ。</p></div></li>
+      <li><span class="n">2</span><div class="t"><h3>まずヒントが届く</h3><p>答えはすぐに見せません。ヒントを手がかりに、もう一度自分で考えます。</p></div></li>
+      <li><span class="n">3</span><div class="t"><h3><span class="nw">ヒントの10分後、</span><span class="nw">回答と解説動画が届く</span></h3>
+          <div class="vs">
+            <p class="vs-q">普段使っているAIに聞くのと、何がちがうの？</p>
+            <p class="ai-note"><span aria-hidden="true">💡</span><span>全国の入試問題・中学受験テキストを偏差値別に学習し尽くした専用AIが回答するので、塾で習う、入試本番を意識した解き方で解説します。</span></p>
+          </div></div></li>
+      <li><span class="n">4</span><div class="t"><h3><span class="nw">それでもわからなければ、</span><span class="nw">京大生とオンラインで</span><span class="nw">15分の1対1</span></h3><p><span class="ok">何回でもOK！</span><span class="nw">平日20〜22時・</span><span class="nw">土曜16〜18時</span></p></div></li>
+    </ol>
+    <div class="photo-slot">写真：京大生と小学生が<br>画面越しに話している様子</div>
+    <p class="subjects"><b>対応教科</b><span>国語・算数・理科・社会</span></p>
+    <div class="movie">
+      <h3><span class="nw">中学受験を経験した京大生から、</span><span class="nw">保護者の皆様へ</span></h3>
+      <p class="q-lead">この時期、どんな声掛けがうれしい？</p>
+      <ul class="kc" aria-label="京大生5人のメッセージ">
+        <li>
+          <blockquote><p class="say"><span class="nw">「間違えた問題が</span><span class="nw">見つかってよかったね。</span><span class="nw">本番じゃなくて</span><span class="nw">ラッキーだったね」</span></p><p class="more">直前期に悪い点数を取ると、子ども自身が誰よりもショックを受けている。前向きに転換してもらえると、冷静に復習へ向かうことができる。</p></blockquote>
+          <p class="who"><b>京都大学 農学部 1回生　K.</b>麻布中学校 出身<br>中学受験：小4からSAPIX</p>
+          <button class="vbtn" type="button" data-v="../video/k.mp4" aria-label="K.の動画を再生"><span class="th"><img src="../video/k.jpg" alt="" width="48" height="64"></span><span>動画を見る<small>1:23</small></span></button>
+        </li>
+        <li>
+          <blockquote><p class="say"><span class="nw">「保護者の方は、</span><span class="nw">マラソンにおける</span><span class="nw">伴走者のようなものです」</span></p><p class="more">テストの点数が悪いからといって厳しい言葉をかけるのではなく、どうしたら点数を上げられるかを一緒に考えてあげるといいと思います。</p></blockquote>
+          <p class="who"><b>京都大学 工学部 4回生　T.</b>洛星中学校 出身<br>中学受験：塾に2年間</p>
+          <button class="vbtn" type="button" data-v="../video/t.mp4" aria-label="T.の動画を再生"><span class="th"><img src="../video/t.jpg" alt="" width="48" height="64"></span><span>動画を見る<small>1:19</small></span></button>
+        </li>
+        <li>
+          <blockquote><p class="say"><span class="nw">「ここまでよく頑張ってきたね」</span><span class="nw">「本番でも大丈夫だよ」</span></p><p class="more">「このままでは受からない」といった厳しい言葉は、本人が一番よく分かっていることなので、言われると余計に追い詰められてしまいます。</p></blockquote>
+          <p class="who"><b>京都大学 理学部 3回生　Y.</b>久留米大学附設中学校 出身<br>中学受験：小6から塾</p>
+          <button class="vbtn" type="button" data-v="../video/y.mp4" aria-label="Y.の動画を再生"><span class="th"><img src="../video/y.jpg" alt="" width="48" height="64"></span><span>動画を見る<small>1:19</small></span></button>
+        </li>
+        <li>
+          <blockquote><p class="say"><span class="nw">「シンプルに</span><span class="nw">自信がつくような</span><span class="nw">褒め言葉を</span><span class="nw">かけ続けるのが</span><span class="nw">一番良いと思います」</span></p><p class="more">プレッシャーをかけすぎると押し潰されてしまうので、ある意味いつも通り程々に接するのが一番いいかもしれません。</p></blockquote>
+          <p class="who"><b>京都大学 工学部 2回生　R.</b>四ツ葉学園中等教育学校 出身<br>中学受験：塾は直前1週間だけ</p>
+          <button class="vbtn" type="button" data-v="../video/r.mp4" aria-label="R.の動画を再生"><span class="th"><img src="../video/r.jpg" alt="" width="48" height="64"></span><span>動画を見る<small>1:11</small></span></button>
+        </li>
+        <li>
+          <blockquote><p class="say"><span class="nw">「最後まで</span><span class="nw">いつも通りに</span><span class="nw">接してくれたことが</span><span class="nw">よかったです」</span></p><p class="more">直前期は模試の判定で不安になり、気持ちに余裕がなくなります。家の中を受験モードに変えるより、今まで通り一緒にご飯を食べて軽く会話する。それが一番だと思います。</p></blockquote>
+          <p class="who"><b>京都大学 総合人間学部 1回生　S.</b>ノートルダム清心中学校 出身<br>中学受験：家庭学習研究社に通塾</p>
+          <button class="vbtn" type="button" data-v="../video/s.mp4" aria-label="S.の動画を再生"><span class="th"><img src="../video/s.jpg" alt="" width="48" height="64"></span><span>動画を見る<small>1:13</small></span></button>
+        </li>
+      </ul>
+      <div class="kc-hint" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+      <p class="note">動画では、ラストスパートの過ごし方・声掛け・中学受験が大学受験に役立ったことを話しています。動画の映像はAIで作成したイメージで、ご本人ではありません。</p>
+    </div>
+    <p class="pending">京大生への質問を使った保護者・生徒の声（準備中）</p>
+  </section>
+
+  <!-- S5 オンライン自習室 -->
+  <section class="sec">
+    <div class="head">
+      <img class="sec-logo yaru" src="../img/yarukkya-logo.png" alt="ヤルッキャ">
+      <div class="creds"><span>経済産業省 採択事業</span><span>サピックス小学部に導入</span></div>
+      <h2 class="h2">オンライン自習室</h2>
+    </div>
+    <div class="block">
+      <h3>かんたん2ステップ</h3>
+      <div class="two">
+        <figure><img src="../img/step1.jpg" alt="学習机の横に置いたタブレットに自習室の画面が映っている"><figcaption><b>STEP 1</b>学習机の横に<br>タブレットをセット</figcaption></figure>
+        <figure><img src="../img/step2.jpg" alt="タブレットの横で問題集に向かう小学生"><figcaption><b>STEP 2</b>全国の中学受験生と一緒に集中時間を共有</figcaption></figure>
+      </div>
+    </div>
+    <div class="block">
+      <h3>かならずモザイクがかかります</h3>
+      <div class="two mosaic">
+        <img src="../img/mosaic-before.jpg" alt="タブレットの前で勉強する子ども（実際の様子）">
+        <img src="../img/mosaic-after.jpg" alt="モザイクがかかった、画面に映る子どもの姿">
+      </div>
+      <p class="note">マイクはありません。ほかの子と会話はできず、家の音も拾いません。<br>※全身を映すことに抵抗がある場合は、カメラを手元に向けてご参加ください。</p>
+    </div>
+    <ul class="feats">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg><div><h3>全国の小学生と一斉スタート</h3><p>予約した時間に入室。全国の受験生と一緒に集中時間を共有。</p></div></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg><div><h3>お子さまの勉強の映像をLINEに送付</h3><p>25秒に圧縮した早送りの録画が届きます。共働き家庭でもあんしん。</p><figure class="rec"><img src="../img/rec.webp" width="213" height="141" alt="机で勉強する子どもを早送りで録画した映像" loading="lazy"><figcaption>実際に届く録画（25秒）</figcaption></figure></div></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.5 16.5V7.5h3.2a2.5 2.5 0 010 5H9.5"/></svg><div><h3>頑張るとポイントがたまる</h3><p>1pt＝1円でAmazonギフト券と交換できます。</p></div></li>
+    </ul>
+  </section>
+
+  <!-- CTA（2回目） -->
+  <section class="sec tint mid">
+    <p class="offer"><span>ヤルッキャユーザー限定割引</span></p>
+    <a class="btn js-apply" target="_top" href="https://herazika.github.io/go/ookini-lp/apply/"><span>無料ではじめる<small>（2週間無料）</small></span><svg class="arw" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5"/></svg></a>
+  </section>
+
+  <!-- S7 料金 -->
+  <section class="sec" id="price">
+    <h2 class="h2">まずは2週間、無料で</h2>
+    <div class="price">
+      <div class="limit"><span>ヤルッキャアカウントをお持ちの方</span><b>限定割引</b></div>
+      <div class="body">
+        <p class="old"><span>通常 月額</span><s>9,800円</s></p>
+        <span class="down" aria-hidden="true"></span>
+        <p class="new"><b>4,980</b><span>円/月（税込）</span></p>
+        <p class="save">毎月4,820円おトク</p>
+        <p class="free-line"><span class="free">2週間 無料体験</span>つき</p>
+      </div>
+      <p class="set">2つのサービスを、セットでご利用いただけます</p>
+      <ul>
+        <li>京大生に質問し放題（国語・算数・理科・社会）</li>
+        <li>オンライン自習室 使い放題</li>
+      </ul>
+    </div>
+    <div class="flow">
+      <h3>お申し込みの流れ</h3>
+      <ol class="steps">
+        <li><span class="n">1</span><div class="t"><h3>下のボタンから申し込む</h3><p>京大おおきに先生で使うメールアドレスを入力して送るだけです。</p></div></li>
+        <li><span class="n">2</span><div class="t"><h3>届いたメールから登録する</h3><p>「【京大生質問し放題】ご利用開始のお知らせ」メールに、京大おおきに先生の登録ページと登録用メールアドレスが書いてあります。</p></div></li>
+        <li><span class="n">3</span><div class="t"><h3>その日から2週間、無料で質問し放題</h3><p>無料期間が終わる前日に、続けてご利用いただくためのご案内をメールでお送りします。</p></div></li>
+      </ol>
+    </div>
+    <div class="cta">
+      <p class="offer"><span>ヤルッキャユーザー限定割引</span></p>
+      <a class="btn js-apply" target="_top" href="https://herazika.github.io/go/ookini-lp/apply/"><span>無料ではじめる<small>（2週間無料）</small></span><svg class="arw" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5"/></svg></a>
+      <p class="note">クレジットカード不要／いつでも解約できます</p>
+    </div>
+  </section>
+
+  <!-- S8 よくある質問 -->
+  <section class="sec tint">
+    <h2 class="h2">よくある質問</h2>
+    <div class="faq-groups">
+      <div class="faq-g"><h3>共通</h3><div class="faq">
+        <details><summary>京大おおきに先生だけを申し込む（課金する）ことはできますか？</summary><p>できません。京大おおきに先生は、ヤルッキャとのセット（月額4,980円）でのお申し込みのみです。</p></details>
+        <details><summary>今のヤルッキャのアカウントのまま使えますか？</summary><p>はい。登録し直す必要はなく、貯めたポイントや記録もそのまま使えます。ヤルッキャを有料でお使いの方は、セットに切り替えると月額4,980円になり、今のヤルッキャの料金はかからなくなります。</p></details>
+        <details><summary>今はヤルッキャに課金していません。それでも無料体験できますか？</summary><p>できます。ヤルッキャもあらためて2週間無料になり、京大おおきに先生も2週間無料でご利用いただけます。</p></details>
+        <details><summary>ヤルッキャを有料で使っています。無料期間中の料金はどうなりますか？</summary><p>ヤルッキャの料金は、これまでどおりかかります。2週間無料になるのは、京大おおきに先生の分です。</p></details>
+        <details><summary>2週間が過ぎたら自動で課金されますか？</summary><p>されません。続けてご利用いただく場合だけ、無料期間が終わる前日にお送りするメールの案内に沿ってお申し込みください。</p></details>
+        <details><summary>この割引価格はいつまで続きますか？</summary><p>解約するまで、ずっと月額4,980円のままです。</p></details>
+        <details><summary>スマホ・タブレット・PCのどれで使えますか？</summary><p>どれでも使えます。</p></details>
+        <details><summary>兄弟姉妹で使いたいときは、どうすればいいですか？</summary><p>アカウントはお子さま1人につき1つです。兄弟姉妹で使う場合は、それぞれのアカウントでお申し込みください。</p></details>
+        <details><summary>解約はどうすればいいですか？</summary><p>ヤルッキャのページから、30秒で解約できます。</p></details>
+      </div></div>
+      <div class="faq-g"><h3>京大おおきに先生</h3><div class="faq">
+        <details><summary>どの教科を質問できますか？</summary><p>国語・算数・理科・社会の4教科です。</p></details>
+        <details><summary>年末年始も質問できますか？</summary><p>12月29日〜1月4日は、京大おおきに先生はお休みです。</p></details>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- S9 最後のCTA -->
+  <section class="sec last">
+    <h2 class="h2">わからない問題は、<br>京大生に聞けばいい</h2>
+    <div class="cta">
+      <p class="offer"><span>ヤルッキャユーザー限定割引</span></p>
+      <a class="btn js-apply" target="_top" href="https://herazika.github.io/go/ookini-lp/apply/"><span>無料ではじめる<small>（2週間無料）</small></span><svg class="arw" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5"/></svg></a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>運営：株式会社Herazika（ヤルッキャ）／株式会社千学館（京大おおきに先生）</p>
+    <p>特定商取引法に基づく表示／プライバシーポリシー</p>
+  </footer>
+</div>
+
+<div class="sticky off" id="sticky"><div class="sticky-in">
+  <a class="btn js-apply" target="_top" href="https://herazika.github.io/go/ookini-lp/apply/"><span>無料ではじめる<small>（2週間無料）</small></span><svg class="arw" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5"/></svg></a>
+</div></div>
+
+<dialog class="vd" id="vd"><form method="dialog"><button class="x" aria-label="閉じる">×</button><video controls playsinline preload="none"></video></form></dialog>
+<script>
+// 申込ボタンに、このページのURLの ?k=（友達招待コード）を引き継ぐ
+(function(){
+  var k='';
+  try{k=new URLSearchParams(location.search).get('k')||'';}catch(e){}
+  if(!k)return;
+  document.querySelectorAll('.js-apply').forEach(function(a){
+    a.href=a.href.split('?')[0]+'?k='+encodeURIComponent(k);
+  });
+})();
+(function(){
+  var d=document.getElementById('vd'),v=d.querySelector('video');
+  document.querySelectorAll('.kc .vbtn').forEach(function(b){
+    b.addEventListener('click',function(){v.src=b.dataset.v;d.showModal();v.play().catch(function(){});});
+  });
+  d.addEventListener('close',function(){v.pause();v.removeAttribute('src');v.load();});
+  d.addEventListener('click',function(e){if(e.target===d)d.close();});
+  var kc=document.querySelector('.kc'),dots=document.querySelectorAll('.kc-hint i');
+  kc.addEventListener('scroll',function(){
+    var w=kc.firstElementChild.getBoundingClientRect().width+12,i=Math.round(kc.scrollLeft/w);
+    dots.forEach(function(x,j){x.classList.toggle('on',j===i);});
+  },{passive:true});
+})();
+(function(){
+  var sticky=document.getElementById('sticky'), fv=document.getElementById('fv'), price=document.getElementById('price');
+  function update(){
+    var past=fv.getBoundingClientRect().bottom<0;
+    var r=price.getBoundingClientRect(), atPrice=r.top<window.innerHeight&&r.bottom>0;
+    sticky.classList.toggle('off', !past||atPrice);
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  window.addEventListener('resize',update);
+  update();
+})();
+</script>
+
+</body>
+</html>
