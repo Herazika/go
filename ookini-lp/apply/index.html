@@ -111,13 +111,14 @@
   <p class="foot">お問い合わせ：ヤルッキャ運営（株式会社Herazika）info@herazika.com</p>
 </div>
 
+<script src="../ga.js"></script>
 <script src="../form.js"></script>
 <script>
 (function () {
   var k = new URLSearchParams(location.search).get('k') || '';
   var hasCode = /^[A-Za-z0-9]{6,20}$/.test(k);
   document.getElementById(hasCode ? 'formsec' : 'nocode').hidden = false;
-  if (!hasCode) return;
+  if (!hasCode) { window.ookiniTrack && ookiniTrack('ookini_apply_nocode', true); return; }
 
   var form = document.getElementById('f');
   var btn = document.getElementById('submit');
@@ -148,18 +149,20 @@
     var gradeOther = form.gradeOther.value.trim();
     if (gradeEl && gradeEl.value === 'その他' && !gradeOther) { OokiniForm.setErr(form.gradeOther, true); ok = false; }
     if (!form.consent.checked) { OokiniForm.setErr(form.consent, true); ok = false; }
-    if (!ok) { var first = form.querySelector('.field.err'); if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+    if (!ok) { window.ookiniTrack && ookiniTrack('ookini_form_invalid', false); var first = form.querySelector('.field.err'); if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
 
     btn.disabled = true; btn.textContent = '送信しています…';
     OokiniForm.send({ type: 'apply', k: k, email: email, grade: gradeEl.value,
                       gradeOther: gradeEl.value === 'その他' ? gradeOther : '', consent: true })
       .then(function (res) {
         if (!res || !res.ok) throw new Error((res && res.error) || 'failed');
+        window.ookiniTrack && ookiniTrack('ookini_form_done', true);
         document.getElementById('formsec').hidden = true;
         document.getElementById('done').hidden = false;
         window.scrollTo(0, 0);
       })
       .catch(function () {
+        window.ookiniTrack && ookiniTrack('ookini_form_fail', false);
         alertBox.textContent = '送信できませんでした。通信環境をご確認のうえ、もう一度お試しください。解決しない場合は info@herazika.com までお問い合わせください。';
         alertBox.classList.add('on');
         btn.disabled = false; btn.textContent = '申し込む';

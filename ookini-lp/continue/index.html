@@ -70,6 +70,7 @@
   <p class="foot">お問い合わせ：ヤルッキャ運営（株式会社Herazika）info@herazika.com</p>
 </div>
 
+<script src="../ga.js"></script>
 <script src="../form.js"></script>
 <script>
 (function () {
@@ -88,17 +89,19 @@
     if (!OokiniForm.validEmail(email)) { OokiniForm.setErr(form.email, true); ok = false; }
     if (email2.toLowerCase() !== email.toLowerCase() || !email2) { OokiniForm.setErr(form.email2, true); ok = false; }
     if (!form.wish.checked) { OokiniForm.setErr(form.wish, true); ok = false; }
-    if (!ok) { var first = form.querySelector('.field.err'); if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+    if (!ok) { window.ookiniTrack && ookiniTrack('ookini_form_invalid', false); var first = form.querySelector('.field.err'); if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
 
     btn.disabled = true; btn.textContent = '送信しています…';
     OokiniForm.send({ type: 'continue', email: email, wish: true })
       .then(function (res) {
         if (!res || !res.ok) throw new Error((res && res.error) || 'failed');
+        window.ookiniTrack && ookiniTrack('ookini_form_done', true);
         document.getElementById('formsec').hidden = true;
         document.getElementById('done').hidden = false;
         window.scrollTo(0, 0);
       })
       .catch(function () {
+        window.ookiniTrack && ookiniTrack('ookini_form_fail', false);
         alertBox.textContent = '送信できませんでした。通信環境をご確認のうえ、もう一度お試しください。解決しない場合は info@herazika.com までお問い合わせください。';
         alertBox.classList.add('on');
         btn.disabled = false; btn.textContent = '継続を申し込む';

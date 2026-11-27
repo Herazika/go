@@ -275,7 +275,7 @@ h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.02em;text-wr
   </header>
 
   <!-- S1 ファーストビュー -->
-  <section class="sec fv" id="fv">
+  <section data-ga="fv" class="sec fv" id="fv">
     <p class="only"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="1.5"/><path d="M5.5 7V5a2.5 2.5 0 015 0v2"/></svg>ヤルッキャアカウントをお持ちの方限定</p>
     <h1><span class="q">中学受験、わからない問題を</span>京大生に<br><span class="mark">質問し放題<svg viewBox="0 0 200 18" preserveAspectRatio="none" aria-hidden="true"><path d="M3 11 C 48 4, 104 6, 150 7 S 192 9, 197 6"/></svg></span></h1>
     <p class="subj4" aria-label="国語・算数・理科・社会、すべて質問できます"><i aria-hidden="true">国</i><i aria-hidden="true">算</i><i aria-hidden="true">理</i><i aria-hidden="true">社</i><b aria-hidden="true">！</b><span>4教科どれでも、何回でも</span></p>
@@ -293,7 +293,7 @@ h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.02em;text-wr
   </section>
 
   <!-- S2 課題 -->
-  <section class="sec tint">
+  <section data-ga="pain" class="sec tint">
     <h2 class="h2">中学受験の家庭学習、<br>親が全部抱えていませんか</h2>
     <ul class="pains">
       <li><span class="box"><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M3 12l5 5L20 2"/></svg></span><span><span class="nw">算数の質問に答えられない。</span><span class="nw">教えようとすると喧嘩になる</span></span></li>
@@ -303,7 +303,7 @@ h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.02em;text-wr
   </section>
 
   <!-- S3 なぜ2つセットなのか -->
-  <section class="sec graph">
+  <section data-ga="both" class="sec graph">
     <h2 class="h2">「わからない」と「やらない」<br>両方まとめて任せられます</h2>
     <div class="split">
       <div><span class="k">わからない</span><span class="why">問題で手が止まる</span><span class="down" aria-hidden="true"></span><span class="s">京大生に<br>質問し放題</span></div>
@@ -312,7 +312,7 @@ h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.02em;text-wr
   </section>
 
   <!-- S4 京大生に質問 -->
-  <section class="sec tint">
+  <section data-ga="kyodai" class="sec tint">
     <div class="head">
       <img class="sec-logo ookini" src="../img/ookini-logo.png" alt="京大おおきに先生">
       <h2 class="h2">京大生に質問し放題</h2>
@@ -370,7 +370,7 @@ h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.02em;text-wr
   </section>
 
   <!-- S5 オンライン自習室 -->
-  <section class="sec">
+  <section data-ga="jishu" class="sec">
     <div class="head">
       <img class="sec-logo yaru" src="../img/yarukkya-logo.png" alt="ヤルッキャ">
       <div class="creds"><span>経済産業省 採択事業</span><span>サピックス小学部に導入</span></div>
@@ -399,13 +399,13 @@ h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.02em;text-wr
   </section>
 
   <!-- CTA（2回目） -->
-  <section class="sec tint mid">
+  <section data-ga="cta_mid" class="sec tint mid">
     <p class="offer"><span>ヤルッキャユーザー限定割引</span></p>
     <a class="btn js-apply" target="_top" href="https://herazika.github.io/go/ookini-lp/apply/"><span>無料ではじめる<small>（2週間無料）</small></span><svg class="arw" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 9h12M10 4l5 5-5 5"/></svg></a>
   </section>
 
   <!-- S7 料金 -->
-  <section class="sec" id="price">
+  <section data-ga="price" class="sec" id="price">
     <h2 class="h2">まずは2週間、無料で</h2>
     <div class="price">
       <div class="limit"><span>ヤルッキャアカウントをお持ちの方</span><b>限定割引</b></div>
@@ -438,7 +438,7 @@ h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.02em;text-wr
   </section>
 
   <!-- S8 よくある質問 -->
-  <section class="sec tint">
+  <section data-ga="faq" class="sec tint">
     <h2 class="h2">よくある質問</h2>
     <div class="faq-groups">
       <div class="faq-g"><h3>共通</h3><div class="faq">
@@ -460,7 +460,7 @@ h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.02em;text-wr
   </section>
 
   <!-- S9 最後のCTA -->
-  <section class="sec last">
+  <section data-ga="last" class="sec last">
     <h2 class="h2">わからない問題は、<br>京大生に聞けばいい</h2>
     <div class="cta">
       <p class="offer"><span>ヤルッキャユーザー限定割引</span></p>
@@ -515,5 +515,6 @@ h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.02em;text-wr
 })();
 </script>
 
+<script src="../ga.js"></script>
 </body>
 </html>
